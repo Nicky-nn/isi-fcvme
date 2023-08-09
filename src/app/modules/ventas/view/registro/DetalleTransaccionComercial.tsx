@@ -206,13 +206,13 @@ export const DetalleTransaccionComercial: FC<Props> = (props) => {
                         Cantidad ICE
                       </th> */}
                       <th scope="col" style={{ width: 160 }}>
-                        Precio ({monedaTienda.sigla})
+                        Precio
                       </th>
                       <th scope="col" style={{ width: 160 }}>
-                        Descuento ({monedaTienda.sigla})
+                        Descuento
                       </th>
                       <th scope="col" style={{ width: 150 }}>
-                        SUB Total ({monedaTienda.sigla})
+                        SUB Total
                       </th>
                       <th scope="col" style={{ width: 100 }}>
                         Opciones
@@ -264,18 +264,7 @@ export const DetalleTransaccionComercial: FC<Props> = (props) => {
                                           variant="body2"
                                           color="text.primary"
                                         >
-                                          {`Código: ${item.codigoProducto}`} <br />
-                                          {`Marca Ice: ${
-                                            item.marcaIce === 1 ? 'Si' : 'No'
-                                          }`}{' '}
-                                          {item.marcaIce !== 2 && (
-                                            <>
-                                              <br />
-                                              {`Alicuota Específica: ${item.alicuotaEspecifica}`}{' '}
-                                              <br />
-                                              {`Alicuota Porcentual: ${item.alicuotaPorcentual} %`}{' '}
-                                            </>
-                                          )}
+                                          {`Código: ${item.codigoProducto}`}
                                         </Typography>{' '}
                                         <br />
                                         {`${item.unidadMedida.descripcion || ''}`}
@@ -305,37 +294,6 @@ export const DetalleTransaccionComercial: FC<Props> = (props) => {
                                 }
                               />
                             </td>
-                            {/* <td data-label="CANTIDAD ICE">
-                              <InputNumber
-                                min={0.1}
-                                value={item.marcaIce === 2 ? 0 : item.cantidad}
-                                onFocus={handleFocus}
-                                onChange={(cantidadIce: number | null) => {
-                                  if (cantidadIce !== null) {
-                                    if (item.marcaIce === 2) {
-                                      // Si marcaIce es 2, establecer cantidadIce en 0 y no permitir la edición.
-                                      update(index, {
-                                        ...item,
-                                        cantidadIce: 0,
-                                      })
-                                    } else {
-                                      // Si marcaIce no es 2, permitir la edición del valor de cantidadIce.
-                                      if (cantidadIce >= 0) {
-                                        update(index, {
-                                          ...item,
-                                          cantidadIce,
-                                        })
-                                      }
-                                    }
-                                  }
-                                }}
-                                formatter={(value, info) =>
-                                  numberWithCommas(value, info, 5)
-                                }
-                                readOnly={item.marcaIce === 2} // Deshabilitar la edición si marcaIce es 2.
-                              />
-                            </td> */}
-
                             <td data-label={`PRECIO (${monedaTienda.sigla})`}>
                               <InputNumber
                                 min={0}

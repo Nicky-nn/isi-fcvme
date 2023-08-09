@@ -17,7 +17,7 @@ const reqQuery = gql`
     $page: Int!
     $query: String
   ) {
-    iceProductoListado(limit: $limit, reverse: $reverse, page: $page, query: $query) {
+    fcvmeProductoListado(limit: $limit, reverse: $reverse, page: $page, query: $query) {
       pageInfo {
         hasNextPage
         hasPrevPage
@@ -62,11 +62,6 @@ const reqQuery = gql`
           codigoClasificador
           descripcion
         }
-        marcaIce
-        subPartidaArancelaria
-        alicuotaDescripcion
-        alicuotaEspecifica
-        alicuotaPorcentual
         state
         usucre
         createdAt
@@ -93,5 +88,5 @@ export const apiProductosVariantes = async (
   client.setHeader('authorization', `Bearer ${token}`)
 
   const data: any = await client.request(reqQuery, { ...pageInfo })
-  return data?.iceProductoListado || []
+  return data?.fcvmeProductoListado || []
 }

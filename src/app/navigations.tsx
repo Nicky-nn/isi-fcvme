@@ -33,12 +33,12 @@ export const navigations: NavigationProps[] = [
     icon: 'point_of_sale',
     children: [
       {
-        name: 'Registrar ICE',
+        name: 'Registrar Compra / Venta',
         iconText: 'ALRE',
         path: '/ventas/registro',
       },
       {
-        name: 'Gestión de Ventas',
+        name: 'Gestión de Compra / Ventas',
         iconText: 'ALGE',
         path: '/ventas/gestion',
       },

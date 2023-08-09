@@ -9,6 +9,7 @@ import Breadcrumb from '../../../base/components/Template/Breadcrumb/Breadcrumb'
 import SimpleCard from '../../../base/components/Template/Cards/SimpleCard'
 import useAuth from '../../../base/hooks/useAuth'
 import usePlantillaDetalleExtra from '../../base/detalleExtra/hook/usePlantillaDetalleExtra'
+import MonedaOperaciones from '../components/Registro/MonedaOperaciones'
 import { FacturaInitialValues, FacturaInputProps } from '../interfaces/factura'
 import { VentaRegistroValidator } from '../validator/ventaRegistroValidator'
 import DatosActividadEconomica from './registro/DatosActividadEconomica'
@@ -36,8 +37,8 @@ const VentaRegistro = () => {
       <div className="breadcrumb">
         <Breadcrumb
           routeSegments={[
-            { name: 'Facturacion ICE', path: '/ventas/registro' },
-            { name: 'Registrar ICE' },
+            { name: 'Compra / Venta', path: '/ventas/registro' },
+            { name: 'Registrar Compra Venta' },
           ]}
         />
       </div>
@@ -57,6 +58,11 @@ const VentaRegistro = () => {
             )}
           </Grid>
           <Grid item lg={7} md={12} xs={12}>
+            <div style={{ padding: '10px 0' }}>
+              <SimpleCard title={'Datos Comercial Exportación'}>
+                <MonedaOperaciones form={form} />
+              </SimpleCard>
+            </div>
             <div style={{ padding: '20px 0' }}>
               <SimpleCard title={'Cliente / Método de pago'}>
                 <DatosTransaccionComercial form={form} user={user!} />

@@ -47,29 +47,7 @@ const ProductosVariantes: FunctionComponent<Props> = (props) => {
         accessorKey: 'unidadMedida.descripcion',
         header: 'Unidad Medida',
         enableColumnFilter: false,
-      },
-      {
-        accessorKey: 'marcaIce',
-        header: 'Marca ICE',
-        id: 'marcaIce',
-        size: 135,
-        accessorFn: (row) => (row.marcaIce === 1 ? 'SI' : row.marcaIce === 2 ? 'NO' : ''),
-      },
-      {
-        accessorKey: 'subPartidaArancelaria',
-        header: 'Sub Partida Arancelaria',
-      },
-      {
-        accessorKey: 'alicuotaDescripcion',
-        header: 'Alicuota',
-      },
-      {
-        accessorKey: 'alicuotaEspecifica',
-        header: 'Alicuota Especifica',
-      },
-      {
-        accessorKey: 'alicuotaPorcentual',
-        header: 'Alicuota Porcentual',
+        size: 100,
       },
       {
         accessorKey: 'precio',
@@ -83,9 +61,21 @@ const ProductosVariantes: FunctionComponent<Props> = (props) => {
         size: 100,
       },
       {
+        accessorKey: 'sinProductoServicio.descripcionProducto',
+        header: 'Descripción Producto',
+        enableColumnFilter: false,
+      },
+      {
+        accessorKey: 'proveedor.nombre',
+        header: 'Proveedor',
+        enableColumnFilter: false,
+        size: 100,
+      },
+      {
         accessorKey: 'sinProductoServicio.codigoActividad',
         header: 'Código Actividad',
         enableColumnFilter: false,
+        size: 100,
       },
     ],
     [],
