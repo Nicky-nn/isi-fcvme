@@ -21,6 +21,11 @@ import fcvFondo from '/assets/images/isibackgroud.jpg'
 import { isEmptyValue } from '../../../../utils/helper'
 import { Paragraph } from '../../../components/Template/Typography'
 import useAuth from '../../../hooks/useAuth'
+declare global {
+  interface Window {
+    javascriptCallback: () => void
+  }
+}
 
 // const fondo = import.meta.env.ISI_FONDO || fcvFondo
 const fondo = '/assets/images/isibackgroud.jpg'
@@ -80,6 +85,7 @@ const JwtLogin = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const { login }: any = useAuth()
+  const [isCaptchaVerified, setIsCaptchaVerified] = useState(false)
 
   const [message, setMessage] = useState('')
   const formik = useFormik({
@@ -112,6 +118,31 @@ const JwtLogin = () => {
   useEffect(() => {
     if (!isEmptyValue(localStorage.getItem('shop'))) {
       formik.setFieldValue('shop', localStorage.getItem('shop'))
+    }
+  }, [])
+
+  // Capcha
+
+  useEffect(() => {
+    window.javascriptCallback = () => {
+      setIsCaptchaVerified(true)
+    }
+
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    script.async = true
+    script.defer = true
+
+    script.addEventListener('load', () => {
+      console.log('Script del CAPTCHA cargado correctamente.')
+    })
+
+    // Agregar el script al final del cuerpo del documento
+    document.body.appendChild(script)
+
+    return () => {
+      document.body.removeChild(script) // Eliminar el script al desmontar el componente
+      window.javascriptCallback = () => {}
     }
   }, [])
 
@@ -186,6 +217,20 @@ const JwtLogin = () => {
                       }}
                     />
 
+                    <div
+                      className="cf-turnstile"
+                      data-sitekey="0x4AAAAAAAIkjLV9wbVBEmv2"
+                      data-callback="javascriptCallback"
+                      data-theme="light"
+                      data-lenguage="es"
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        paddingBottom: '20px',
+                      }}
+                    ></div>
+
                     <FlexBox justifyContent="space-between">
                       <FlexBox gap={1}>
                         <Checkbox
@@ -213,6 +258,7 @@ const JwtLogin = () => {
                       loading={loading}
                       variant="contained"
                       sx={{ my: 2 }}
+                      disabled={!isCaptchaVerified}
                     >
                       Iniciar Sesión
                     </LoadingButton>

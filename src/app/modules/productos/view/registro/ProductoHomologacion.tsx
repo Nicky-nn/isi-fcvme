@@ -1,18 +1,6 @@
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  SelectChangeEvent,
-} from '@mui/material'
+import { FormControl, FormHelperText, Grid } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import { Controller, UseFormReturn } from 'react-hook-form'
 import Select from 'react-select'
 
@@ -22,16 +10,10 @@ import { MyInputLabel } from '../../../../base/components/MyInputs/MyInputLabel'
 import { reactSelectStyles } from '../../../../base/components/MySelect/ReactSelect'
 import SimpleCard from '../../../../base/components/Template/Cards/SimpleCard'
 import useAuth from '../../../../base/hooks/useAuth'
-import { PageInputProps } from '../../../../interfaces'
-import { apiAlicuotas2 } from '../../../alicuota/api/alicuotas.api'
-import { apiProveedores } from '../../../proveedor/api/proveedores.api'
-import { AlicuotasProps } from '../../../proveedor/interfaces/proveedor.interface'
 import { fetchSinProductoServicioPorActividad } from '../../../sin/api/sinProductoServicio.api'
 import useQueryActividadesPorDocumentoSector from '../../../sin/hooks/useQueryActividadesPorDocumentoSector'
-import { subPartidaArancelariaProps } from '../../../sin/interfaces/sin.interface'
 import {
   SinActividadesDocumentoSectorProps,
-  SinActividadesProps,
   SinProductoServicioProps,
 } from '../../../sin/interfaces/sin.interface'
 import { ProductoInputProps } from '../../interfaces/producto.interface'
