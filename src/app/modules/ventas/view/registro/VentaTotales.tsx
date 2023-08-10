@@ -78,7 +78,7 @@ const VentaTotales: FunctionComponent<Props> = (props) => {
       await swalAsyncConfirmDialog({
         text: '¿Confirma que desea emitir el documento fiscal?',
         preConfirm: () => {
-          return fetchFacturaCreate(inputFactura, true).catch((err) => {
+          return fetchFacturaCreate(inputFactura).catch((err) => {
             swalException(err)
             return false
           })
@@ -180,6 +180,7 @@ const VentaTotales: FunctionComponent<Props> = (props) => {
                       {},
                     )}`
                   }
+                  isDisabled={true}
                 />
                 {errors.moneda && (
                   <FormHelperText>{errors.moneda?.message}</FormHelperText>
@@ -195,7 +196,7 @@ const VentaTotales: FunctionComponent<Props> = (props) => {
             style={{ padding: 0 }}
             secondaryAction={
               <Typography variant="subtitle1" gutterBottom>
-                {numberWithCommas(calculoMoneda(getValues('montoSubTotal') || 0), {})}
+                {numberWithCommas(getValues('montoSubTotal') || 0, {})}
                 <span style={{ fontSize: '0.8em' }}> {inputMoneda?.sigla || ''}</span>
               </Typography>
             }
@@ -213,10 +214,7 @@ const VentaTotales: FunctionComponent<Props> = (props) => {
                   variant="subtitle1"
                   underline="hover"
                 >
-                  {numberWithCommas(
-                    calculoMoneda(getValues('descuentoAdicional')) || 0,
-                    {},
-                  )}
+                  {numberWithCommas(getValues('descuentoAdicional') || 0, {})}
                   <span style={{ fontSize: '0.8em' }}> {inputMoneda?.sigla || ''}</span>
                 </Link>
                 <DescuentoAdicionalDialog
@@ -241,7 +239,7 @@ const VentaTotales: FunctionComponent<Props> = (props) => {
             style={{ padding: 0 }}
             secondaryAction={
               <Typography variant="subtitle1" gutterBottom>
-                {numberWithCommas(calculoMoneda(getValues('total') || 0), {})}
+                {numberWithCommas(getValues('total') || 0, {})}
                 <span style={{ fontSize: '0.8em' }}> {inputMoneda?.sigla || ''}</span>
               </Typography>
             }
@@ -257,7 +255,7 @@ const VentaTotales: FunctionComponent<Props> = (props) => {
             style={{ padding: 0 }}
             secondaryAction={
               <Typography variant="h6" gutterBottom>
-                {numberWithCommas(calculoMoneda(getValues('montoPagar') || 0), {})}
+                {numberWithCommas(getValues('montoPagar') || 0, {})}
                 <span style={{ fontSize: '0.8em' }}> {inputMoneda?.sigla || ''}</span>
               </Typography>
             }
@@ -296,7 +294,7 @@ const VentaTotales: FunctionComponent<Props> = (props) => {
           <Grid item xs={12} md={5} lg={5}>
             <small>Vuelto / Saldo</small>
             <Typography variant="h6" gutterBottom mr={2} align={'right'} color={'red'}>
-              {numberWithCommas(calculoMoneda(getValues('inputVuelto') || 0), {})}
+              {numberWithCommas(getValues('inputVuelto') || 0, {})}
             </Typography>
           </Grid>
           <Grid item xs={12} md={12} lg={12}>

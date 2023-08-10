@@ -56,12 +56,6 @@ export interface ProductoVarianteProps {
   usumod?: string
   updatedAt?: Date
   proveedor?: ProveedorProps
-  marcaIce?: number
-  subPartidaArancelaria?: string
-  alicuotaDescripcion?: string
-  alicuotaEspecifica?: number
-  alicuotaPorcentual?: number
-  cantidadIce?: number
 }
 
 export interface ProductoVarianteInputProps {
@@ -100,8 +94,6 @@ export interface ProductoInputProps {
   tipoProducto: TipoProductoProps | null
   codigoProveedor: ProveedorProps | null
   state?: string
-  marcaIce?: number
-  subPartidaArancelaria?: string
 }
 
 export const PRODUCTO_VARIANTE_INITIAL_VALUES: ProductoVarianteInputProps = {
@@ -133,8 +125,6 @@ export const PRODUCTO_INITIAL_VALUES: ProductoInputProps = {
   tipoProducto: null,
   codigoProveedor: null,
   state: '',
-  marcaIce: 1,
-  subPartidaArancelaria: '',
 }
 
 export interface ProductoVarianteApiProps {

@@ -91,13 +91,11 @@ const ProductoPrecio: FunctionComponent<Props> = (props) => {
                   onChange={(precio: number | null) => {
                     // @ts-ignore
                     field.onChange(precio)
-                    console.log('precio', precio)
                   }}
                   onBlur={(e) => {
                     const parsedValue = parseFloat(e.target.value)
                     if (!isNaN(parsedValue)) {
                       setValue('precio', parsedValue)
-                      console.log('parsedValue', parsedValue)
                     }
                   }}
                   formatter={(value, info) => numberWithCommas(value, info, 2)}

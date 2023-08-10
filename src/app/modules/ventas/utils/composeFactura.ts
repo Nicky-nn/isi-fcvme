@@ -21,9 +21,11 @@ export const composeFactura = (fcv: FacturaInputProps): any => {
       email: fcv.cliente!.email,
     },
     codigoMetodoPago: fcv.codigoMetodoPago.codigoClasificador,
-    descuentoAdicional: calculoMonedaBs(fcv.descuentoAdicional, fcv.tipoCambio),
+    descuentoAdicional: fcv.descuentoAdicional,
     codigoMoneda: fcv.moneda!.codigo,
     tipoCambio: fcv.tipoCambio,
+    codigoTipoOperacion: fcv.codigoTipoOperacion,
+    tipoCambioOficial: fcv.tipoCambioOficial,
     detalleExtra: fcv.detalleExtra,
     detalle: fcv.detalle.map((item) => ({
       codigoActividad: fcv.actividadEconomica!?.codigoActividad,
@@ -32,16 +34,9 @@ export const composeFactura = (fcv: FacturaInputProps): any => {
       descripcionProducto: item.nombre,
       cantidad: item.cantidad,
       unidadMedida: parseInt(item.unidadMedida.codigoClasificador.toString()),
-      montoDescuento: calculoMonedaBs(item.montoDescuento, fcv.tipoCambio),
-      marcaIce: item.marcaIce,
-      precioUnitario: calculoMonedaBs(item.precioUnitario, fcv.tipoCambio),
-      ...(item.marcaIce === 2
-        ? {}
-        : {
-            cantidadIce: item.cantidad,
-            alicuotaEspecifica: item.alicuotaEspecifica,
-            alicuotaPorcentual: item.alicuotaPorcentual,
-          }),
+      montoDescuento: item.montoDescuento,
+      detalleExtra: item.detalleExtra,
+      precioUnitario: item.precioUnitario,
     })),
   }
   if (fcv.numeroTarjeta) {

@@ -94,13 +94,11 @@ const MonedaOperaciones = (props: OperacionesProps) => {
                       return
                     }
                     field.onChange(val)
-                    console.log('val', val)
                     // Aquí actualizamos el valor del campo "tipoCambio" al valor correspondiente de la moneda seleccionada
                     const selectedMoneda = monedas.find(
                       (moneda) => moneda.sigla === val.sigla,
                     )
                     if (selectedMoneda) {
-                      console.log('selectedMoneda', selectedMoneda.tipoCambio)
                       setValue('tipoCambio', selectedMoneda.tipoCambio)
                     }
                   }}
@@ -147,9 +145,11 @@ const MonedaOperaciones = (props: OperacionesProps) => {
                   placeholder={'Seleccione el tipo de operación'}
                   onChange={(selectedOption) => {
                     if (selectedOption) {
-                      // setValue('codigoTipoOperacion', selectedOption.value)
+                      // @ts-ignore
+                      const selectedMoneda = parseInt(selectedOption.value)
+                      setValue('codigoTipoOperacion', selectedMoneda)
                     } else {
-                      // setValue('codigoTipoOperacion', null)
+                      setValue('codigoTipoOperacion', 1)
                     }
                   }}
                   value={options.find(
@@ -178,7 +178,6 @@ const MonedaOperaciones = (props: OperacionesProps) => {
                   if (/^\d+(\.\d{0,5})?$/.test(inputValue) || inputValue === '') {
                     const numericValue = inputValue === '' ? 0 : parseFloat(inputValue)
                     if (numericValue >= 0 && numericValue <= 99999999.99999) {
-                      console.log('numericValue', numericValue)
                       field.onChange(numericValue)
                       setValue('tipoCambio', numericValue)
                     }
@@ -202,10 +201,18 @@ const MonedaOperaciones = (props: OperacionesProps) => {
                 id="tipoCambioOficial"
                 label="Tipo Cambio Oficial"
                 fullWidth
+                inputProps={{ step: '0.00001' }} // Establecer el paso para hasta 5 decimales
                 error={Boolean(errors.tipoCambioOficial)}
                 helperText={errors.tipoCambioOficial?.message}
                 onChange={(e) => {
-                  setValue('tipoCambioOficial', e.target.value)
+                  const inputValue = e.target.value.trim()
+                  if (/^\d+(\.\d{0,5})?$/.test(inputValue) || inputValue === '') {
+                    const numericValue = inputValue === '' ? 0 : parseFloat(inputValue)
+                    if (numericValue >= 0 && numericValue <= 99999999.99999) {
+                      field.onChange(numericValue)
+                      setValue('tipoCambioOficial', numericValue)
+                    }
+                  }
                 }}
               />
             )}

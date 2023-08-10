@@ -17,8 +17,8 @@ export interface FacturaProps {
 const genDetalle = () => {}
 
 export const REGISTRO_ONLINE = gql`
-  mutation ICE_REGISTRO($notificacion: Boolean, $input: FacturaIceInput!) {
-    facturaIceRegistro(notificacion: $notificacion, input: $input) {
+  mutation ICE_REGISTRO($input: FcvMonedaExtranjeraInput!) {
+    fcvMonedaExtranjeraRegistro(input: $input) {
       state
       numeroFactura
       representacionGrafica {
@@ -37,19 +37,15 @@ export const REGISTRO_ONLINE = gql`
   }
 `
 
-export const fetchFacturaCreate = async (
-  notificacion: Boolean,
-  input: any,
-): Promise<FacturaProps> => {
+export const fetchFacturaCreate = async (input: any): Promise<FacturaProps> => {
   try {
     const client = new GraphQLClient(import.meta.env.ISI_API_URL)
     const token = localStorage.getItem(AccessToken)
     client.setHeader('authorization', `Bearer ${token}`)
     const data: any = await client.request(REGISTRO_ONLINE, {
-      notificacion: notificacion,
       input: input,
     })
-    return data.facturaIceRegistro
+    return data.fcvMonedaExtranjeraRegistro
   } catch (e: any) {
     console.log('error', e)
     // error en json

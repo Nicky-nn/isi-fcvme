@@ -40,7 +40,6 @@ export const apiProductoRegistro = async (
   const token = localStorage.getItem(AccessToken)
   // Set a single header
   client.setHeader('authorization', `Bearer ${token}`)
-  console.log('apiProductoRegistro', input)
   const data: any = await client.request(gqlQuery, {
     codigoProducto: codigoProducto,
     input: input,

@@ -59,7 +59,7 @@ const VentaRegistro = () => {
           </Grid>
           <Grid item lg={7} md={12} xs={12}>
             <div style={{ padding: '10px 0' }}>
-              <SimpleCard title={'Datos Comercial Exportación'}>
+              <SimpleCard title={'Datos Comercial Compra / Venta'}>
                 <MonedaOperaciones form={form} />
               </SimpleCard>
             </div>

@@ -56,7 +56,6 @@ const ProductoActualizar: FunctionComponent<Props> = (props) => {
     const val = await productoRegistroValidatorResponde(values)
     const codigoProducto = values.codigoProducto
     const apiInput = productoComposeService(values)
-    console.log('apiInput', apiInput)
     await swalAsyncConfirmDialog({
       preConfirm: async () => {
         const resp: any = await apiProductoModificar(codigoProducto, apiInput).catch(
@@ -86,7 +85,6 @@ const ProductoActualizar: FunctionComponent<Props> = (props) => {
     try {
       swalLoading()
       const response = await apiProductoPorId(codigoProducto)
-      console.log('response', response)
       setProducto(response[0])
       const act = await fetchSinActividades()
       if (response) {

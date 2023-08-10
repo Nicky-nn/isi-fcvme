@@ -39,6 +39,8 @@ export interface FacturaInputProps {
   codigoMetodoPago: MetodoPagoProp
   descuentoAdicional: number
   codigoMoneda: number
+  codigoTipoOperacion: number
+  tipoCambioOficial: number
   detalle: FacturaAlquilerDetalleInput[]
   detalleExtra?: string | null
   detalleExtraText?: string | null
@@ -70,6 +72,8 @@ export const FacturaInitialValues: FacturaInputProps = {
     codigoClasificador: 1,
     descripcion: 'EFECTIVO',
   },
+  tipoCambioOficial: 1,
+  codigoTipoOperacion: 1 || 2,
   codigoMoneda: 1,
   descuentoAdicional: 0,
   detalle: [] as FacturaAlquilerDetalleInput[],
@@ -117,6 +121,7 @@ export interface FacturaProps {
   cufd: SinCufdProps
   cuis: SinCuisProps
   descuentoAdicional: number
+  codigoTipoOperacion: number
   detalle: DetalleFacturaProps[]
   detalleExtra: string
   documentoSector: SinTipoDocumentoSectorProps

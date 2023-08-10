@@ -56,7 +56,6 @@ const VentaGestionExportarDetalleDialog: FunctionComponent<Props> = (props) => {
       query,
     }
     const { docs } = await fetchFacturaListado(fetchPagination)
-    console.log(docs)
     setLoading(false)
     if (docs.length > 0) {
       const dataExport: any = []
@@ -96,7 +95,6 @@ const VentaGestionExportarDetalleDialog: FunctionComponent<Props> = (props) => {
           })
         })
       }
-      console.log(dataExport)
       exportFromJSON({
         data: dataExport,
         fileName: 'reporte_detalle_ventas',
