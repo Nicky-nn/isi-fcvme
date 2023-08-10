@@ -36,6 +36,7 @@ const ClienteActualizarDialog: FunctionComponent<Props> = (props) => {
       ...CLIENTE_DEFAULT_INPUT,
       action: actionForm.UPDATE,
     },
+    //@ts-ignore
     resolver: yupResolver(clienteInputValidator),
   })
 

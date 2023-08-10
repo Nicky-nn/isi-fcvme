@@ -35,6 +35,7 @@ const NcdRegistro = () => {
       detalleFactura: [],
       detalle: [],
     },
+    //@ts-ignore
     resolver: yupResolver(ncdRegistroValidationSchema),
   })
 

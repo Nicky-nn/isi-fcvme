@@ -32,6 +32,7 @@ const ClienteRegistroDialog: FunctionComponent<Props> = (props) => {
     defaultValues: {
       ...CLIENTE_DEFAULT_INPUT,
     },
+    //@ts-ignore
     resolver: yupResolver(clienteInputValidator),
   })
 

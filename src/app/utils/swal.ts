@@ -2,6 +2,7 @@ import Swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2'
 
 import { swalExceptionMsg } from '../base/services/swalExceptionMsg'
 
+// @ts-ignore
 interface Props extends SweetAlertOptions<any, any> {
   title?: string
   text?: string
