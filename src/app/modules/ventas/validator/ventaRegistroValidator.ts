@@ -6,6 +6,8 @@ export const VentaRegistroValidator = object({
     codigoActividad: string().required(),
   }),
   tipoCliente: string().required(),
+  tipoCambio: number().required('Debe ingresar el tipo de cambio'),
+  tipoCambioOficial: number().required('Debe ingresar el tipo de cambio oficial'),
   cliente: object({
     codigoCliente: string().required(),
   })

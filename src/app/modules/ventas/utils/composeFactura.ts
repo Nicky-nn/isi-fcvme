@@ -54,7 +54,10 @@ export const composeFacturaValidator = async (fcv: any): Promise<boolean> => {
     }),
     codigoMetodoPago: number().integer().min(1).max(308).required(),
     detalleExtra: string().min(0).max(500),
-    tipoCambio: number().min(0),
+    tipoCambio: number().min(0).required('Debe ingresar el tipo de cambio'),
+    tipoCambioOficial: number()
+      .min(0)
+      .required('Debe ingresar el tipo de cambio oficial'),
     numeroTarjeta: string().max(16),
     detalle: array()
       .of(

@@ -29,7 +29,7 @@ export const navigations: NavigationProps[] = [
     type: 'label',
   },
   {
-    name: 'Facturacion ICE',
+    name: 'Compra / Venta',
     icon: 'point_of_sale',
     children: [
       {

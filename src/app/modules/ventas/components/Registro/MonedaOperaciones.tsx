@@ -175,8 +175,12 @@ const MonedaOperaciones = (props: OperacionesProps) => {
                 onChange={(e) => {
                   let inputValue = e.target.value.trim()
                   inputValue = inputValue.replace(/,/g, '.')
-                  if (/^\d+(\.\d{0,5})?$/.test(inputValue) || inputValue === '') {
-                    const numericValue = inputValue === '' ? 0 : parseFloat(inputValue)
+
+                  if (inputValue === '') {
+                    field.onChange('') // Mantener el campo vacío como cadena
+                    setValue('tipoCambio', Number.NaN) // Mantener el estado vacío como cadena
+                  } else if (/^\d+(\.\d{0,5})?$/.test(inputValue)) {
+                    const numericValue = parseFloat(inputValue)
                     if (numericValue >= 0 && numericValue <= 99999999.99999) {
                       field.onChange(numericValue)
                       setValue('tipoCambio', numericValue)
@@ -206,8 +210,12 @@ const MonedaOperaciones = (props: OperacionesProps) => {
                 helperText={errors.tipoCambioOficial?.message}
                 onChange={(e) => {
                   const inputValue = e.target.value.trim()
-                  if (/^\d+(\.\d{0,5})?$/.test(inputValue) || inputValue === '') {
-                    const numericValue = inputValue === '' ? 0 : parseFloat(inputValue)
+
+                  if (inputValue === '') {
+                    field.onChange('') // Establecer el campo vacío
+                    console.log(setValue('tipoCambioOficial', Number.NaN)) // También actualizar el estado
+                  } else if (/^\d+(\.\d{0,5})?$/.test(inputValue)) {
+                    const numericValue = parseFloat(inputValue)
                     if (numericValue >= 0 && numericValue <= 99999999.99999) {
                       field.onChange(numericValue)
                       setValue('tipoCambioOficial', numericValue)
